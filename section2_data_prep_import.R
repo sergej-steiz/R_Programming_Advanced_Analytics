@@ -48,6 +48,20 @@ typeof(y)
 x <- as.numeric(as.character(z))
 typeof(x)
 
+# Factor Variable Trap (FVT) example:
+head(fin)
+str(fin)
+
+#for the example purpose we will factorize Profit variable
+fin$Profit <- factor(fin$Profit)
+str(fin)
+str(fin$Profit)
+
+# overwriting with a wrong values happen here:
+fin$Profit <- as.numeric(fin$Profit)
+str(fin$Profit)
+head(fin)
+# now the top rows for Profit are looking completely different
 
 
 
