@@ -64,4 +64,26 @@ head(fin)
 # now the top rows for Profit are looking completely different
 
 
+# sub() and gsub() functions
+?sub
 
+fin$Expenses <- gsub(" Dollars","",fin$Expenses)
+fin$Expenses <- gsub(",","",fin$Expenses)
+head(fin)
+str(fin)
+
+# replace $ ->special character , we need to create an escape sequence with \\
+fin$Revenue <- gsub("\\$","",fin$Revenue)
+fin$Revenue <- gsub(",","",fin$Revenue)
+head(fin)
+str(fin)
+
+fin$Growth <- gsub("%","",fin$Growth)
+head(fin)
+str(fin)
+
+#finally we convert character to numeric. as above factors were converted to character with gsub function
+fin$Expenses <- as.numeric(fin$Expenses)
+fin$Revenue <- as.numeric(fin$Revenue)
+fin$Growth <- as.numeric(fin$Growth)
+str(fin)
