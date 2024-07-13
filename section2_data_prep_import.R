@@ -9,6 +9,12 @@ getwd()
 #read in data
 fin <- read.csv("P3-Future-500-The-Dataset.csv", stringsAsFactors = T)
 
+
+#read in data , confirm NA for missing/empty values
+fin <- read.csv("P3-Future-500-The-Dataset.csv", stringsAsFactors = T, na.strings = c(""))
+
+
+
 #investigate the fin data set
 fin
 head(fin)
@@ -16,7 +22,7 @@ tail(fin)
 str(fin)
 
 # changing from non-factor to factor:
-# a few numeric variables are needed as categorical variables, as we do not want to make any descreptive statistics with them.
+# a few numeric variables are needed as categorical variables, as we do not want to make any descriptive statistics with them.
 
 fin$ID <- factor(fin$ID)
 summary(fin)
@@ -87,3 +93,25 @@ fin$Expenses <- as.numeric(fin$Expenses)
 fin$Revenue <- as.numeric(fin$Revenue)
 fin$Growth <- as.numeric(fin$Growth)
 str(fin)
+summary(fin)
+
+# What is NA?
+
+?NA
+
+TRUE  #1
+FALSE #0
+NA
+
+# locating missing data
+fin
+head(fin,24)
+
+# function to check if observation has no missing values
+complete.cases(fin)
+# here you can keep only non missing values
+fin[complete.cases(fin),]
+
+# here you can keep only missing values
+fin[!complete.cases(fin),]
+ 
