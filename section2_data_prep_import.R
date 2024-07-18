@@ -102,7 +102,7 @@ summary(fin)
 TRUE  #1
 FALSE #0
 NA
-
+# fin <- read.csv("P3-Future-500-The-Dataset.csv", stringsAsFactors = T, na.strings = c(""))
 # locating missing data
 fin
 head(fin,24)
@@ -114,4 +114,20 @@ fin[complete.cases(fin),]
 
 # here you can keep only missing values
 fin[!complete.cases(fin),]
- 
+
+# filtering using which() for non missing data
+head(fin)
+
+#usual way
+fin$Revenue==9746272
+fin[fin$Revenue==9746272,] # also NA included as we are not able to confirm the value for NA cases
+
+#now with which()
+which(fin$Revenue==9746272)  # only return true values. the number of the correct rows 
+fin[which(fin$Revenue==9746272),]
+
+#another one example
+head(fin)
+fin[fin$Employees==45,]
+
+fin[which(fin$Employees==45),]
