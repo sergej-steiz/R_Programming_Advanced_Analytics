@@ -131,3 +131,23 @@ head(fin)
 fin[fin$Employees==45,]
 
 fin[which(fin$Employees==45),]
+
+#filtering using is.na() for missing data:
+head(fin,24)
+
+
+# get rows with NA in expenses variable
+fin[!complete.cases(fin$Expenses),]
+
+# you cannot compare anything to NA
+fin$Expenses == NA
+fin[fin$Expenses == NA,]
+
+# another way to find NA use is.na()
+# is.na() is checking if something is NA
+
+a <- c(1,24,543,NA,76,45,NA)
+a
+is.na(a)
+is.na(fin$Expenses)
+fin[is.na(fin$Expenses),]
