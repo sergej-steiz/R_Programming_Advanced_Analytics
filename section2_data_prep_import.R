@@ -151,3 +151,45 @@ a
 is.na(a)
 is.na(fin$Expenses)
 fin[is.na(fin$Expenses),]
+
+# removing records with missing data
+fin_backup <- fin
+# check all rows that have empty values
+fin[!complete.cases(fin),]
+
+#only those with NA in industry column
+fin[is.na(fin$Industry),]
+
+#same as above
+#fin[!complete.cases(fin$Industry),]
+fin[!is.na(fin$Industry),] # opposite
+#now we assign to fin 
+fin <- fin[!is.na(fin$Industry),]
+str(fin)
+
+# check all rows that have empty values
+fin[!complete.cases(fin),]
+
+# Resetting the dataframe index
+fin
+rownames(fin)
+rownames(fin) <- 1:nrow(fin)
+fin
+
+# another hack
+fin <- fin_backup
+rownames(fin) <- NULL
+fin
+
+#Replacing Missing Data: Factual Analysis:
+fin[!complete.cases(fin),]
+fin[is.na(fin$State),]
+fin[is.na(fin$State) & fin$City=="New York",]
+# overwrite values with "New York"
+fin[is.na(fin$State) & fin$City=="New York","State"] <- "NY"
+# check
+fin[c(11,379),]
+
+fin[!complete.cases(fin),]
+# overwrite values with "San Francisco"
+fin[is.na(fin$State) & fin$City=="San Francisco","State"] <- "CA"
