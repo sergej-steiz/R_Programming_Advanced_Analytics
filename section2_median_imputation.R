@@ -68,4 +68,39 @@ fin[332,]
 fin <- fin[!is.na(fin$Industry),]
 rownames(fin) <- NULL
 
+
+############################### Replacing Missing Data: Median Imputation Method (Part 2)
+
+fin[!complete.cases(fin),]
+med_growth_constr <- median(fin[fin$Industry=="Construction","Growth"], na.rm = TRUE)
+
+# replace NA for Growth column using filter 
+fin[is.na(fin$Growth) & fin$Industry=="Construction","Growth"] <- med_growth_constr
+#check:
+fin[8,]
+
+med_revenue_constr <- median(fin[fin$Industry=="Construction","Revenue"], na.rm = TRUE)
+#median(fin[,"Revenue"], na.rm = TRUE) 
+
+# replace NA for Revenue column using filter 
+fin[is.na(fin$Revenue) & fin$Industry=="Construction","Revenue"] <- med_revenue_constr
+#check:
+fin[c(8,42),]
+
+med_expenses_constr <- median(fin[fin$Industry=="Construction","Expenses"], na.rm = TRUE)
+#median(fin[,"Expenses"], na.rm = TRUE)
+
+# replace NA for Expenses column using filter 
+fin[is.na(fin$Expenses) & fin$Industry=="Construction","Expenses"] <- med_expenses_constr
+#check:
+fin[c(8,42),]
+
+med_expenses_it <- median(fin[fin$Industry=="IT Services","Expenses"], na.rm = TRUE)
+#median(fin[,"Expenses"], na.rm = TRUE)
+
+# replace NA for Expenses column using filter 
+fin[is.na(fin$Expenses) & fin$Industry=="IT Services","Expenses"] <- med_expenses_it
+#check:
+fin[15,]
+
 fin[!complete.cases(fin),]
