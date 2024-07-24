@@ -87,6 +87,7 @@ fin[is.na(fin$Revenue) & fin$Industry=="Construction","Revenue"] <- med_revenue_
 #check:
 fin[c(8,42),]
 
+fin[!complete.cases(fin),]
 med_expenses_constr <- median(fin[fin$Industry=="Construction","Expenses"], na.rm = TRUE)
 #median(fin[,"Expenses"], na.rm = TRUE)
 
@@ -95,12 +96,13 @@ fin[is.na(fin$Expenses) & fin$Industry=="Construction","Expenses"] <- med_expens
 #check:
 fin[c(8,42),]
 
-med_expenses_it <- median(fin[fin$Industry=="IT Services","Expenses"], na.rm = TRUE)
+fin[!complete.cases(fin),]
+#med_expenses_it <- median(fin[fin$Industry=="IT Services","Expenses"], na.rm = TRUE)
 #median(fin[,"Expenses"], na.rm = TRUE)
 
 # replace NA for Expenses column using filter 
-fin[is.na(fin$Expenses) & fin$Industry=="IT Services","Expenses"] <- med_expenses_it
+#fin[is.na(fin$Expenses) & fin$Industry=="IT Services","Expenses"] <- med_expenses_it
 #check:
-fin[15,]
+#fin[15,]
 
 fin[!complete.cases(fin),]
