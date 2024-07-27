@@ -68,6 +68,7 @@ fin[332,]
 fin <- fin[!is.na(fin$Industry),]
 rownames(fin) <- NULL
 
+fin[498,]
 
 ############################### Replacing Missing Data: Median Imputation Method (Part 2)
 
@@ -106,3 +107,27 @@ fin[!complete.cases(fin),]
 #fin[15,]
 
 fin[!complete.cases(fin),]
+
+# Replacing Missing Data: deriving values
+# Revenue - Expenses = Profit
+# Expenses = Revenue - Profit
+
+fin_bup <- fin
+
+
+fin[is.na(fin$Profit),]
+
+fin[is.na(fin$Profit),"Profit"]
+fin[is.na(fin$Profit),"Revenue"]
+fin[is.na(fin$Profit),"Expenses"]
+
+fin[is.na(fin$Profit),"Profit"] <- fin[is.na(fin$Profit),"Revenue"] - fin[is.na(fin$Profit),"Expenses"]
+fin[c(8,42),]
+
+fin[!complete.cases(fin),]
+fin[is.na(fin$Expenses),"Expenses"]
+fin[is.na(fin$Expenses),"Revenue"]
+fin[is.na(fin$Expenses),"Profit"]
+
+fin[is.na(fin$Expenses),"Expenses"] <- fin[is.na(fin$Expenses),"Revenue"] - fin[is.na(fin$Expenses),"Profit"]
+fin[c(15,20),]
